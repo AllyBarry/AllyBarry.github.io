@@ -12,6 +12,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-
-  integrations: [mdx(), sitemap()]
+  integrations: [mdx(), sitemap()],
+  // Github pages setup
+  site: 'https://AllyBarry.github.io',
+  base: '/'
 });
