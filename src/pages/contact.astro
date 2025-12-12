@@ -1,0 +1,92 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Button from '~/components/ui/Button.astro';
+
+// Import Lucide icons (or Heroicons if your project uses them)
+import { Github, Linkedin, Mail } from 'lucide-react';
+
+const metadata = {
+  title: 'Contact',
+};
+
+const pageTitle = 'Contact';
+const pageDescription = 'Get in touch for robotics collaborations, research, or technical consulting.';
+
+// Update these to your actual links:
+const email = 'ali.barry3@gmail.com';
+const github = 'https://github.com/AllyBarry';
+const linkedin = 'https://www.linkedin.com/in/alexandra-may-barry/';
+const cvFile = '/files/CV-Alexandra-Barry.pdf'; // put file in /public/files/
+---
+
+<Layout metadata={metadata}>
+  <section id="contact" class="relative overflow-hidden py-20 md:py-24">
+    <!-- Background glow -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-x-[0] -top-40 h-96 bg-[radial-gradient(circle_at_top,_rgba(var(--aw-color-primary),0.25),transparent_70%)]"
+    >
+    </div>
+
+    <container class="relative">
+      <div class="mx-auto max-w-4xl space-y-10">
+        <header class="text-center space-y-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Let's connect</p>
+          <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-heading">
+            Contact<span class="text-primary">.</span>
+          </h1>
+          <p class="text-sm md:text-base text-muted max-w-2xl mx-auto leading-relaxed">
+            Whether you're exploring research collaborations, robotics projects, or AI consulting - feel free to reach
+            out.
+          </p>
+        </header>
+
+        <!-- Icon Buttons Row -->
+        <div class="flex justify-center gap-6 md:gap-8 pt-4">
+          <!-- Email -->
+          <a
+            href={`mailto:${email}`}
+            class="group p-4 rounded-xl border border-[#ffffff29] bg-white dark:bg-slate-900 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md
+                    transition-all hover:border-primary/60 hover:shadow-[0_0_25px_rgba(var(--aw-color-primary),0.25)] hover:-translate-y-0.5"
+          >
+            <Mail className="w-6 h-6 text-default group-hover:text-primary transition-colors" />
+          </a>
+
+          <!-- GitHub -->
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group p-4 rounded-xl border border-[#ffffff29] bg-white dark:bg-slate-900 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md
+                    transition-all hover:border-primary/60 hover:shadow-[0_0_25px_rgba(var(--aw-color-primary),0.25)] hover:-translate-y-0.5"
+          >
+            <Github className="w-6 h-6 text-default group-hover:text-primary transition-colors" />
+          </a>
+
+          <!-- LinkedIn -->
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group p-4 rounded-xl border border-[#ffffff29] bg-white dark:bg-slate-900 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md
+                    transition-all hover:border-primary/60 hover:shadow-[0_0_25px_rgba(var(--aw-color-primary),0.25)] hover:-translate-y-0.5"
+          >
+            <Linkedin className="w-6 h-6 text-default group-hover:text-primary transition-colors" />
+          </a>
+        </div>
+
+        <!-- Centered CV Download Button -->
+        <div class="pt-6 flex justify-center">
+          <Button
+            href={cvFile}
+            download="CV-Alexandra-Barry.pdf"
+            variant="primary"
+            class="px-6 py-3 text-sm font-medium tracking-tight rounded-xl"
+          >
+            Download CV
+          </Button>
+        </div>
+      </div>
+    </container>
+  </section>
+</Layout>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+    <!-- Body Outline (Beak, Head, Back, Tail, Belly) -->
+    <path d="M124 54L88 56C88 56 82 46 72 46C62 46 56 52 56 52L24 116L44 104L46 118L58 88C58 88 74 84 82 72C90 60 88 56 88 56" stroke="#0F766E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Wing Outline -->
+    <path d="M72 56C72 56 40 10 20 20C0 30 50 64 58 72" stroke="#2DD4BF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

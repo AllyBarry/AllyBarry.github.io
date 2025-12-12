@@ -1,0 +1,156 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import type { Experience as Props } from '~/types';
+
+const {
+  title = 'Experience',
+  subtitle = 'Roles, research, and collaborations that shaped my work.',
+  id,
+  bg = await Astro.slots.render('bg'),
+  items,
+} = Astro.props as Props;
+---
+
+<WidgetWrapper id={id} containerClass="max-w-6xl mx-auto" bg={bg}>
+  <div class={`flex flex-col gap-8 md:gap-12 md:flex-row`}>
+    <Headline
+      title={title}
+      subtitle={subtitle}
+      classes={{
+        container: 'text-center md:text-left rtl:md:text-right mb-4 md:mb-8',
+        title: 'mb-4 text-3xl lg:text-4xl font-bold font-heading',
+        subtitle: 'mb-8 text-xl text-muted dark:text-slate-400',
+        // ...((classes?.headline as {}) ?? {}),
+      }}
+    />
+  </div>
+
+  <div class="relative pl-6 sm:pl-8">
+    <div class="timeline-spine" aria-hidden="true"></div>
+
+    <ol class="space-y-8">
+      {
+        items.map((item) => {
+          const { title, org, location, start, end, description, tags = [], link } = item;
+
+          const dateLabel = end ? `${start} – ${end}` : start;
+
+          const content = (
+            <div
+              class="timeline-item-hover relative rounded-lg border border-[#ffffff29] bg-white dark:bg-slate-900
+                     p-6 shadow-[0_4px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.1)]
+                     backdrop-blur-md
+                     transition-all duration-300
+                     hover:border-primary/60 hover:shadow-[0_0_25px_rgba(var(--aw-color-primary),0.25)]
+                     hover:-translate-y-0.5"
+            >
+              <div class="flex flex-wrap items-baseline gap-2 sm:gap-3">
+                <h3 class="text-base sm:text-lg font-semibold text-default">{title}</h3>
+
+                {org && <span class="text-xs sm:text-sm text-secondary/90">· {org}</span>}
+
+                <span class="ml-auto text-xs text-muted tabular-nums">{dateLabel}</span>
+              </div>
+
+              {location && <p class="mt-1 text-xs text-muted">{location}</p>}
+
+              {description && <p class="mt-2 text-sm text-muted" set:html={description} />}
+
+              {(tags?.length ?? 0) > 0 && (
+                <div class="mt-3 flex flex-wrap gap-1.5">
+                  {tags.map((tag) => (
+                    <span
+                      class="rounded-full border border-primary/30 bg-primary/5 px-2 py-0.5
+                           text-[11px] uppercase tracking-wide text-primary/90"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {link && (
+                <div class="mt-3">
+                  <span class="inline-flex items-center gap-1 text-xs text-primary hover:text-accent">
+                    <span>View</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-3 w-3"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M12.293 3.293a1 1 0 0 1 1.414 0l3 3a1 1 0 1 1-1.414 1.414L14 6.414V14a1 1 0 1 1-2 0V6.414L9.707 7.707A1 1 0 1 1 8.293 6.293l3-3Z" />
+                      <path d="M5 5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-3a1 1 0 1 1 2 0v3a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4h3a1 1 0 0 1 0 2H5Z" />
+                    </svg>
+                  </span>
+                </div>
+              )}
+            </div>
+          );
+
+          return (
+            <li class="relative pl-6 sm:pl-8">
+              <div class="timeline-dot">
+                <div class="timeline-dot-inner" />
+              </div>
+
+              {link ? (
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/80 rounded-xl"
+                >
+                  {content}
+                </a>
+              ) : (
+                content
+              )}
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+</WidgetWrapper>
+<style is:global>
+  /* glowing timeline spine + dots */
+  .timeline-spine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1rem; /* align with dot */
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(var(--aw-color-primary), 0.2), rgba(var(--aw-color-secondary), 0.7), rgba(var(--aw-color-primary), 0.2));
+    opacity: 0.9;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 30% 30%, rgb(var(--aw-color-primary)), rgb(var(--aw-color-accent)));
+    box-shadow:
+      0 0 6px rgba(var(--aw-color-primary), 0.9),
+      0 0 18px rgba(var(--aw-color-secondary), 0.7);
+  }
+
+  .timeline-dot-inner {
+    position: absolute;
+    inset: 0.17rem;
+    border-radius: inherit;
+    background: var(--aw-color-bg-page);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-item-hover {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+  }
+</style>

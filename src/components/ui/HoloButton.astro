@@ -1,0 +1,97 @@
+---
+interface Props {
+  href?: string;
+  label: string;
+  type?: "button" | "submit" | "reset";
+  class?: string;
+}
+
+const { href, label, type = "button", class: extra = "" } = Astro.props;
+---
+
+<style is:global>
+  .holo-btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .holo-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      rgba(0, 255, 255, 0.15),
+      rgba(95, 190, 255, 0.08),
+      rgba(0, 255, 255, 0.15)
+    );
+    opacity: 0;
+    transition: opacity .35s ease, transform .45s ease;
+    transform: translate3d(-20%, -20%, 0);
+    pointer-events: none;
+  }
+
+  .holo-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,0.08) 40%,
+      transparent 70%
+    );
+    opacity: 0;
+    transform: translateX(-30%);
+    transition: transform .5s ease, opacity .5s ease;
+    pointer-events: none;
+  }
+
+  .holo-btn:hover::before {
+    opacity: 1;
+    transform: translate3d(0,0,0);
+  }
+
+  .holo-btn:hover::after {
+    opacity: 1;
+    transform: translateX(30%);
+  }
+
+  .holo-btn:active {
+    transform: scale(.97);
+  }
+</style>
+
+
+{href ? (
+  <a
+    href={href}
+    class={`holo-btn relative inline-flex items-center justify-center
+            px-6 py-3 rounded-xl font-medium tracking-wide uppercase
+            text-cyan-200 hover:text-cyan-100
+            bg-black/40 backdrop-blur-md
+            ring-1 ring-cyan-400/40 hover:ring-cyan-300/70
+            shadow-[0_0_20px_4px_rgba(0,255,255,0.15)]
+            hover:shadow-[0_0_32px_8px_rgba(0,255,255,0.25)]
+            transition-all duration-300
+            ${extra}`}
+  >
+    {label}
+  </a>
+) : (
+  <button
+    type={type}
+    class={`holo-btn relative inline-flex items-center justify-center
+            px-6 py-3 rounded-xl font-medium tracking-wide uppercase
+            text-cyan-200 hover:text-cyan-100
+            bg-black/40 backdrop-blur-md
+            ring-1 ring-cyan-400/40 hover:ring-cyan-300/70
+            shadow-[0_0_20px_4px_rgba(0,255,255,0.15)]
+            hover:shadow-[0_0_32px_8px_rgba(0,255,255,0.25)]
+            transition-all duration-300
+            ${extra}`}
+  >
+    {label}
+  </button>
+)}

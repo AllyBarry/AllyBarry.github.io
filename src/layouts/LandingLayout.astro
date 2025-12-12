@@ -1,0 +1,53 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import Header from '~/components/widgets/Header.astro';
+
+import { headerData } from '~/navigation';
+import type { MetaData } from '~/types';
+
+export interface Props {
+  metadata?: MetaData;
+}
+
+const { metadata } = Astro.props;
+---
+
+<PageLayout metadata={metadata}>
+  <!-- Background: charcoal + subtle grid + turquoise glow -->
+  <div class="absolute inset-0 overflow-hidden">
+    <!-- Charcoal base -->
+    <div class="absolute inset-0 bg-[#000000]"></div>
+
+    <!-- Subtle grid (SVG) -->
+    <!-- <svg class="absolute inset-0 w-full h-full opacity-[0.08]" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" stroke-width="0.5"></path>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"></rect>
+    </svg> -->
+
+    <!-- Soft turquoise radial glow -->
+    <div
+      class="absolute -top-40 left-1/2 -translate-x-1/2 h-[50rem] w-[50rem] rounded-full blur-[120px] opacity-70"
+      style="
+        background: radial-gradient(closest-side, var(--akili-turquoise) 0%, transparent 60%);
+      "
+      aria-hidden="true"
+    >
+    </div>
+
+    <!-- Bottom fade for clean edge -->
+    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--akili-charcoal)] to-transparent"></div>
+  </div>
+  <Fragment slot="announcement">
+    <slot name="announcement" />
+  </Fragment>
+  <Fragment slot="header">
+    <slot name="header">
+      <Header />
+    </slot>
+  </Fragment>
+  <slot />
+</PageLayout>

@@ -1,0 +1,85 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/montserrat';
+
+// 'DM Sans'
+// Nunito
+// Dosis
+// Outfit
+// Roboto
+// Literata
+// 'IBM Plex Sans'
+// Karla
+// Poppins
+// 'Fira Sans'
+// 'Libre Franklin'
+// Inconsolata
+// Raleway
+// Oswald
+// 'Space Grotesk'
+// Urbanist
+---
+
+<style is:inline>
+  :root {
+    --aw-color-primary: rgb(36, 114, 105); /* Strong Turquoise Green */
+    --aw-color-secondary: rgb(30, 145, 132);
+    --aw-color-accent: rgb(55, 246, 201); /* Keeping contrast accent or adjusting? User only asked for primary. */
+
+    --aw-color-text-heading: rgb(0 0 0);
+    --aw-color-text-default: rgb(16 16 16);
+    --aw-color-text-muted: rgb(16 16 16 / 66%);
+    --aw-color-bg-page: rgb(255 255 255);
+
+    --aw-color-bg-page-dark: rgb(14, 15, 20);
+
+    ::selection {
+      background-color: lavender;
+    }
+  }
+
+  .dark {
+    --aw-font-sans: 'Inter Variable';
+    --aw-font-serif: 'Inter Variable';
+    --aw-font-heading: 'Inter Variable';
+
+    --aw-color-primary: rgb(45, 212, 191); /* Light Teal/Turquoise */
+    --aw-color-secondary: rgb(20, 184, 166);
+    --aw-color-accent: rgb(33, 218, 175);
+
+    --aw-color-text-heading: rgb(247, 248, 248);
+    --aw-color-text-default: rgb(229 236 246);
+    --aw-color-text-muted: rgb(229 236 246 / 66%);
+    --aw-color-bg-page: rgb(17, 20, 27);
+
+    --accent-text-over: rgb(190, 208, 233);
+    --accent-regular: rgb(14, 101, 88);
+    --accent-tagline: rgb(44, 170, 151);
+
+    --pill-shadow: rgba(163, 167, 184, 0.763);
+    --pill-background: rgba(40, 109, 106, 0.69);
+
+    ::selection {
+      background-color: black;
+      color: snow;
+    }
+  }
+
+  * {
+    font-family:
+      'Montserrat Variable',
+      -apple-system,
+      system-ui,
+      sans-serif;
+
+    --aw-font-sans: 'Montserrat Variable';
+    --aw-font-serif: 'Montserrat Variable';
+    --aw-font-heading: 'Montserrat Variable';
+
+    --text-md: 1rem;
+
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+</style>

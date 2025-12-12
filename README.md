@@ -1,30 +1,42 @@
-# Astro Starter Kit: Portfolio
+# Alexandra Barry - Portfolio
 
-```sh
-npm create astro@latest -- --template portfolio
+A showcase of my work in **Robotics**, **AI**, and **Full Stack Engineering**. This portfolio highlights my research, projects, and professional experience, built with a modern, high-performance tech stack.
+
+## 🚀 Built With
+- **[Astro 5.0](https://astro.build/)**: For high-performance static site generation.
+- **[Tailwind CSS](https://tailwindcss.com/)**: For rapid, responsive styling.
+- **[AstroWind](https://github.com/onwidget/astrowind)**: The foundational template used to kickstart development.
+
+## 🛠️ Usage
+
+### Installation
+To get started locally, clone the repository and install dependencies:
+
+```bash
+npm install
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/portfolio/devcontainer.json)
+### Development
+Start the local development server:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+```bash
+npm run dev
+```
 
-![portfolio](https://user-images.githubusercontent.com/357379/210779178-a98f0fb7-6b1a-4068-894c-8e1403e26654.jpg)
+The site will be available at `http://localhost:4321`.
 
-## 🧞 Commands
+### Build
+To build the project for production:
 
-All commands are run from the root of the project, from a terminal:
+```bash
+npm run build
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 📂 Project Structure
+- `src/pages/`: Contains the routes and main page structures.
+- `src/components/`: Reusable UI components and widgets.
+- `src/content/`: Markdown content for projects (Features, etc.).
+- `src/assets/`: Static assets like images and favicons.
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📬 Contact
+Feel free to explore the code or reach out via the [Contact Page](/contact).

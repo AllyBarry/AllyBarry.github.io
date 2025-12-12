@@ -1,0 +1,200 @@
+---
+import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+
+import type { Hero as Props } from '~/types';
+import TypewriterComponent from './typeEffect';
+import HoloButton from '../ui/HoloButton.astro';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  typeEffect = await Astro.slots.render('typeEffect'),
+
+  content = await Astro.slots.render('content'),
+  actions = await Astro.slots.render('actions'),
+  image = await Astro.slots.render('image'),
+
+  id,
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
+  <div class="absolute inset-0 overflow-hidden">
+    <!-- Charcoal base -->
+    <!-- <div class="absolute inset-0 bg-page bg-[url('/bg-hero-dark.svg')] bg-cover bg-center bg-no-repeat"></div> -->
+    <!-- <div class="hero-bg-layer" aria-hidden="true"></div> -->
+
+    <!-- Soft radial glow -->
+    <!-- <div
+      class="absolute m-10 h-[45rem] w-[45rem] rounded-full blur-[120px] opacity-60 -translate-x-1/2 -translate-y-1/2"
+      style="
+        background: radial-gradient(closest-side, #ded4d4 0%, transparent 60%);
+      "
+      aria-hidden="true"
+    >
+    </div> -->
+
+    <div
+      class="absolute  h-[45rem] w-[45rem] rounded-full blur-[120px] opacity-70"
+      style="
+        background: radial-gradient(closest-side, #ded4d4 0%, transparent 50%);
+        transform: translateX(120%);
+      "
+      aria-hidden="true"
+    >
+    </div>
+
+    <!-- Bottom fade for clean edge -->
+    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[--aw-color-bg-page] to-transparent"></div>
+  </div>
+
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <slot name="bg">
+      {bg ? <Fragment set:html={bg} /> : null}
+    </slot>
+  </div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
+    <div class="py-12 md:py-20">
+      <div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
+        {
+          tagline && (
+            <h2
+              class="intersect-once intersect-quarter text-[var(--accent-tagline)]"
+              set:html={tagline}
+            />
+          )
+        }
+        {
+          title && (
+            <h1
+              class="leading-tighter intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              set:html={title}
+            />
+          )
+        }
+        {
+          typeEffect && (
+            <div class="max-w-3xl mx-auto mb-5">
+              <TypewriterComponent client:visible typeWords={typeEffect} />
+            </div>
+          )
+        }
+        <div class="max-w-3xl mx-auto">
+          {
+            subtitle && (
+              <p
+                class="text-xl text-muted mb-6 dark:text-slate-300 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                set:html={subtitle}
+              />
+            )
+          }
+          {
+            actions && (
+              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+                {Array.isArray(actions) ? (
+                  actions.map((action) => (
+                    <div class="flex w-full sm:w-auto">
+                      <Button {...(action || {})} class="w-full sm:mb-0" />
+                    </div>
+                  ))
+                ) : (
+                  <Fragment set:html={actions} />
+                )}
+              </div>
+            )
+          }
+        </div>
+        {content && <Fragment set:html={content} />}
+      </div>
+      <div
+        class="intersect-once intersect-no-queue intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+      >
+        {
+          image && (
+            <div class="relative m-auto max-w-5xl px-20">
+              {typeof image === 'string' ? (
+                <Fragment set:html={image} />
+              ) : (
+                <Image
+                  class="mx-auto rounded-md w-full"
+                  widths={[400, 768, 1024, 2040]}
+                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                  loading="eager"
+                  width={1024}
+                  height={576}
+                  {...image}
+                />
+              )}
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const layer = document.querySelector('.hero-bg-layer');
+    if (layer && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let latestY = 0;
+      let ticking = false;
+      const strength = 0.15; // parallax factor: 0.05–0.2 is nice
+
+      function update() {
+        const offset = latestY * strength;
+        layer.style.transform = `translate3d(0, ${offset}px, 0)`;
+        ticking = false;
+      }
+
+      window.addEventListener(
+        'scroll',
+        () => {
+          latestY = window.scrollY || window.pageYOffset;
+          if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+          }
+        },
+        { passive: true }
+      );
+    }
+  </script>
+</section>
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background-color: #02030a;
+    color: #f9fafb;
+  }
+
+  .hero-bg-layer {
+    position: absolute;
+    inset: -10%;
+    background-image: url('/bg-hero-dark.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: transform;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* optional: keep things sane for touch / reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg-layer {
+      transform: none !important;
+    }
+  }
+  @media (hover: none) and (pointer: coarse) {
+    .hero-bg-layer {
+      transform: none !important;
+    }
+  }
+</style>
