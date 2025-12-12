@@ -1,50 +1,91 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import Layout from "~/layouts/PageLayout.astro";
+import Hero from "~/components/widgets/Hero.astro";
 import ExperienceTimeline from "~/components/widgets/Experience.astro";
 
 const metadata = {
-  title: 'About me',
+  title: "About me",
 };
-
 
 const experience = [
   {
-    title: "CTO",
-    org: "HCV Insurance",
+    title: "Robotics Lab Manager",
+    org: "RAIL Lab | University of the Witwatersrand",
     location: "Johannesburg, South Africa",
-    start: "2023",
+    start: "2025",
     end: "Present",
-    description: "Leading the transformation of legacy systems into a modern cloud-native platform for heavy commercial vehicle insurance.",
-    tags: ["CTO", "Cloud", "Full Stack"],
+    description: `
+      <ul class="list-disc list-outside ml-4">
+        <li>Maintain, integrate and deploy software stacks across multiple research robots (Husky UGV, Unitree A1, Pepper, BlueROV2, YuMi manipulators, and DJI Robomaster platforms).</li>
+        <li>Built ROS + Python + Docker interfaces to allow non-technical researchers to prototype behaviors on physical robots.</li>
+        <li>Created the robot documentation portal: <a href="https://raillab.github.io/robot-docs/" target="_blank" class="text-primary hover:underline">raillab.github.io/robot-docs</a></li>
+        <li>Design and launch interactive robot demos, supporting rapid iteration and multi-agent experiment deployment.</li>
+      </ul>
+    `,
+    tags: ["Robotics", "Lab Management", "ROS", "Docker"],
+    link: "https://raillab.github.io/robot-docs/",
+  },
+  {
+    title: "CTO",
+    org: "HCV Underwriting Managers",
+    location: "Johannesburg, South Africa",
+    start: "2024",
+    end: "Present",
+    description: `
+      <ul class="list-disc list-outside ml-4">
+        <li>Lead architecture and deployment of company-wide automation and data systems (Airflow, Docker, SQL, AWS).</li>
+        <li>Built production-grade WhatsApp autonomous agent + API integrations for document retrieval and workflow routing.</li>
+        <li>Full legacy system migration with distributed data reconciliation and audit infrastructure.</li>
+      </ul>
+    `,
+    tags: ["CTO", "Cloud", "Full Stack", "Automation"],
     link: "https://hcv.co.za/",
   },
   {
-    title: "AI Consultant",
+    title: "Research Exchange",
+    org: "ACT Lab | Brown University",
+    location: "Providence, USA",
+    start: "2024",
+    end: "2024",
+    description: `
+      <ul class="list-disc list-outside ml-4">
+        <li>Guest researcher supervised by Prof. Nora Ayanian.</li>
+        <li>Designed UWB-based localization + sensor fusion for multi-drone coordination in GPS-denied scenarios.</li>
+        <li>Investigated collective motion to reduce localization uncertainty.</li>
+        <li>Offered PhD continuation after research period.</li>
+      </ul>
+    `,
+    tags: ["Research", "Multi-Agent Systems", "UAVs"],
+    link: "https://sites.brown.edu/act-lab/",
+  },
+  {
+    title: "Intermediate Software Engineer",
     org: "Melio AI",
-    start: "2022",
-    end: "2023",
-    description: "Designed and shipped platforms for deploying and monitoring machine learning solutions in production.",
-    tags: ["MLOps", "Platforms", "Consulting"],
+    start: "2023 - 2024",
+    end: "2025",
+    description: `
+      <ul class="list-disc list-outside ml-4">
+        <li>Platform and pipeline development for ML model deployment (Django, FastAPI, Docker, AWS, Kubernetes).</li>
+        <li>Designed internal ML tooling for reproducible training and evaluation workflows.</li>
+      </ul>
+    `,
+    tags: ["MLOps", "Software Engineering", "Cloud"],
     link: "https://melio.ai/",
   },
   {
-    title: "Fintech Consultant",
-    org: "Elenjical Solutions",
-    start: "2019",
-    end: "2021",
-    description: "Worked on integration and full-stack development for financial systems in capital markets, including projects for <a href='https://www.murex.com/en' class='text-primary hover:underline'>Murex</a>.",
-    tags: ["Fintech", "Integration", "Full Stack"],
-    link: "https://www.elenjicalsolutions.com/",
-  },
-  {
-    title: "MSc - Multi-Agent Reinforcement Learning",
-    org: "RAIL Lab, Wits University",
+    title: "MSc Researcher - Cooperative UAV Swarms",
+    org: "RAIL Lab | University of the Witwatersrand",
     location: "Johannesburg / Remote",
     start: "2023",
     end: "Present",
-    description: "Research on minimizing communication in decentralized UAV swarms in GPS-denied environments.",
-    tags: ["MARL", "Robotics", "UAVs"],
+    description: `
+      <ul class="list-disc list-outside ml-4">
+        <li>Develop multi-agent RL systems for UAV teams to coordinate in GPS-denied cave environments.</li>
+        <li>Focus on communication minimization and global reward alignment under partial observability.</li>
+        <li>Implement scalable simulation + training pipelines (PyTorch, TorchRL, VMAS).</li>
+      </ul>
+    `,
+    tags: ["MARL", "Robotics", "UAVs", "Research"],
     link: "https://www.raillab.org/",
   },
 ];
@@ -56,19 +97,17 @@ const experience = [
   <Hero
     tagline="About me"
     image={{
-      src: '~/assets/images/brown2.jpg', // Keeping original image as per instructions implicit in not changing it
-      alt: 'Photograph of Alexandra',
+      src: "~/assets/images/brown2.jpg", // Keeping original image as per instructions implicit in not changing it
+      alt: "Photograph of Alexandra",
     }}
   >
-    <Fragment slot="title">
-      Innovating at the Intersection of AI & Robotics
-    </Fragment>
+    <Fragment slot="title"> Robotics & AI Engineer </Fragment>
 
     <Fragment slot="subtitle">
-      Experienced Researcher in Robotics and UAVs with a proven track record in Software Development, Consulting, and Leadership.
-      Currently driving technical transformation as the CTO of HCV Insurance.
+      Building intelligent multi-agent systems and robust robotic software
+      stacks.
     </Fragment>
   </Hero>
 
-  <ExperienceTimeline heading="Experience & Research" items={experience} />
+  <ExperienceTimeline title="Experience & Research" items={experience} />
 </Layout>

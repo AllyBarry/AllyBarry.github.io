@@ -1,17 +1,17 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import Layout from "~/layouts/PageLayout.astro";
 
-import Hero from '~/components/widgets/Hero.astro';
-import Features2 from '~/components/widgets/Features2.astro';
-import Pill from '~/components/ui/Pill.astro';
-import Icon from '~/components/ui/Icon.astro';
+import Hero from "~/components/widgets/Hero.astro";
+import Features2 from "~/components/widgets/Features2.astro";
+import Pill from "~/components/ui/Pill.astro";
+import Icon from "~/components/ui/Icon.astro";
 
-import dliImage from '../assets/activities/dli2025.JPG';
-import brownImage from '../assets/activities/brown1.jpg';
-import railImage from '../assets/activities/raillab.png';
+import dliImage from "../assets/activities/dli2025.JPG";
+import brownImage from "../assets/activities/brown1.jpg";
+import railImage from "../assets/activities/raillab.png";
 
 const metadata = {
-  title: 'Alexandra May Barry',
+  title: "Alexandra May Barry",
   ignoreTitleTemplate: true,
 };
 ---
@@ -22,13 +22,15 @@ const metadata = {
   <Hero>
     <Fragment slot="tagline"> Hello, I am </Fragment>
     <Fragment slot="title">Alexandra Barry </Fragment>
-    <Fragment slot="typeEffect">{['Robotics, CTO, RL, AI']}</Fragment>
+    <Fragment slot="typeEffect">{["Robotics, CTO, RL, AI"]}</Fragment>
     <Fragment slot="subtitle">
-      <span class="hidden sm:inline"> View my recent projects and research. Feel free to contact me. </span>
+      <span class="hidden sm:inline">
+        View my recent projects and research. Feel free to contact me.
+      </span>
       <div class="roles">
         <Pill><Icon icon="code" size="1.33em" /> AI Engineer</Pill>
         <Pill><Icon icon="robot" size="1.33em" /> Robotics</Pill>
-        <Pill><Icon icon="robot" size="1.33em" /> Full Stack</Pill>
+        <Pill><Icon icon="presentation-chart" size="1.33em" /> Researcher</Pill>
       </div>
     </Fragment>
 
@@ -47,47 +49,51 @@ const metadata = {
     columns={3}
     items={[
       {
-        title: 'Research Exchange: Brown University',
-        description: 'Guest researcher at the ACT Lab under Prof. Nora Ayanian.',
+        title: "Research Exchange: Brown University",
+        description:
+          "Guest researcher at the ACT Lab under Prof. Nora Ayanian.",
         image: brownImage,
         callToAction: {
-          text: 'View Details',
-          href: '/brown-exchange',
+          text: "View Details",
+          href: "/brown-exchange",
         },
       },
       {
-        title: 'Deep Learning Indaba 2025',
-        description: 'Robot Learning for Africa Workshop Organizing Committee.',
+        title: "Deep Learning Indaba 2025",
+        description: "Robot Learning for Africa Workshop Organizing Committee.",
         image: dliImage,
         callToAction: {
-          text: 'View Details',
-          href: '/indaba-robotics-2025',
+          text: "View Details",
+          href: "/indaba-robotics-2025",
         },
       },
       {
-        title: 'RAIL Lab Manager',
-        description: 'Managing operations, robots (Pepper, Husky, etc), and tech stack.',
+        title: "RAIL Lab Manager",
+        description:
+          "Managing operations and software stacks for robots including Pepper, Husky, and Unitree A1.",
         image: railImage,
         callToAction: {
-          text: 'View Details',
-          href: '/rail-lab-manager',
+          text: "View Details",
+          href: "/rail-lab-manager",
         },
       },
       {
-        title: 'Explore All Projects',
-        description: 'Dive into my full portfolio of research, code, and community work.',
-        icon: 'tabler:arrow-right',
+        title: "Explore All Projects",
+        description:
+          "Dive into my full portfolio of research, code, and community work.",
+        icon: "tabler:arrow-right",
         classes: {
-          panel: 'bg-transparent flex justify-center items-center text-center pt-8',
-          title: 'text-xl font-bold text-gray-800 dark:text-gray-200 mb-2',
-          description: 'text-muted dark:text-gray-400',
-          icon: 'w-10 h-10 mb-4 text-gray-500 dark:text-gray-400',
+          panel:
+            "bg-transparent flex justify-center items-center text-center pt-8",
+          title: "text-xl font-bold text-gray-800 dark:text-gray-200 mb-2",
+          description: "text-muted dark:text-gray-400",
+          icon: "w-10 h-10 mb-4 text-gray-500 dark:text-gray-400",
         },
         callToAction: {
-          text: 'View Portfolio',
-          href: '/projects',
-          variant: 'link',
-          class: 'w-full mt-4 text-primary hover:text-accent',
+          text: "View Portfolio",
+          href: "/projects",
+          variant: "link",
+          class: "w-full mt-4 text-primary hover:text-accent",
         },
       },
     ]}
@@ -106,7 +112,9 @@ const metadata = {
       <div class="space-y-6">
         <Icon name="tabler:quote" class="w-12 h-12 mx-auto text-primary/60" />
 
-        <blockquote class="text-xl md:text-2xl font-serif text-muted italic leading-relaxed">
+        <blockquote
+          class="text-xl md:text-2xl font-serif text-muted italic leading-relaxed"
+        >
           "I will be a hummingbird, I'll do the best I can."
         </blockquote>
 

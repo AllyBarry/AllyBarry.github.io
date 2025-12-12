@@ -1,13 +1,13 @@
 ---
-import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Headline from '~/components/ui/Headline.astro';
-import type { Experience as Props } from '~/types';
+import WidgetWrapper from "~/components/ui/WidgetWrapper.astro";
+import Headline from "~/components/ui/Headline.astro";
+import type { Experience as Props } from "~/types";
 
 const {
-  title = 'Experience',
-  subtitle = 'Roles, research, and collaborations that shaped my work.',
+  title = "Experience",
+  subtitle = "Roles, research, and collaborations that shaped my work.",
   id,
-  bg = await Astro.slots.render('bg'),
+  bg = await Astro.slots.render("bg"),
   items,
 } = Astro.props as Props;
 ---
@@ -18,9 +18,9 @@ const {
       title={title}
       subtitle={subtitle}
       classes={{
-        container: 'text-center md:text-left rtl:md:text-right mb-4 md:mb-8',
-        title: 'mb-4 text-3xl lg:text-4xl font-bold font-heading',
-        subtitle: 'mb-8 text-xl text-muted dark:text-slate-400',
+        container: "text-center md:text-left rtl:md:text-right mb-4 md:mb-8",
+        title: "mb-4 text-3xl lg:text-4xl font-bold font-heading",
+        subtitle: "mb-8 text-xl text-muted dark:text-slate-400",
         // ...((classes?.headline as {}) ?? {}),
       }}
     />
@@ -32,7 +32,16 @@ const {
     <ol class="space-y-8">
       {
         items.map((item) => {
-          const { title, org, location, start, end, description, tags = [], link } = item;
+          const {
+            title,
+            org,
+            location,
+            start,
+            end,
+            description,
+            tags = [],
+            link,
+          } = item;
 
           const dateLabel = end ? `${start} – ${end}` : start;
 
@@ -46,16 +55,26 @@ const {
                      hover:-translate-y-0.5"
             >
               <div class="flex flex-wrap items-baseline gap-2 sm:gap-3">
-                <h3 class="text-base sm:text-lg font-semibold text-default">{title}</h3>
+                <h3 class="text-base sm:text-lg font-semibold text-default">
+                  {title}
+                </h3>
 
-                {org && <span class="text-xs sm:text-sm text-secondary/90">· {org}</span>}
+                {org && (
+                  <span class="text-xs sm:text-sm text-secondary/90">
+                    · {org}
+                  </span>
+                )}
 
-                <span class="ml-auto text-xs text-muted tabular-nums">{dateLabel}</span>
+                <span class="ml-auto text-xs text-muted tabular-nums">
+                  {dateLabel}
+                </span>
               </div>
 
               {location && <p class="mt-1 text-xs text-muted">{location}</p>}
 
-              {description && <p class="mt-2 text-sm text-muted" set:html={description} />}
+              {description && (
+                <div class="mt-2 text-sm text-muted" set:html={description} />
+              )}
 
               {(tags?.length ?? 0) > 0 && (
                 <div class="mt-3 flex flex-wrap gap-1.5">
@@ -123,7 +142,12 @@ const {
     bottom: 0;
     left: 1rem; /* align with dot */
     width: 2px;
-    background: linear-gradient(to bottom, rgba(var(--aw-color-primary), 0.2), rgba(var(--aw-color-secondary), 0.7), rgba(var(--aw-color-primary), 0.2));
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--aw-color-primary), 0.2),
+      rgba(var(--aw-color-secondary), 0.7),
+      rgba(var(--aw-color-primary), 0.2)
+    );
     opacity: 0.9;
   }
 
@@ -134,7 +158,11 @@ const {
     width: 0.9rem;
     height: 0.9rem;
     border-radius: 9999px;
-    background: radial-gradient(circle at 30% 30%, rgb(var(--aw-color-primary)), rgb(var(--aw-color-accent)));
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgb(var(--aw-color-primary)),
+      rgb(var(--aw-color-accent))
+    );
     box-shadow:
       0 0 6px rgba(var(--aw-color-primary), 0.9),
       0 0 18px rgba(var(--aw-color-secondary), 0.7);
