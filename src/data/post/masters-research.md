@@ -3,9 +3,9 @@ title: "MSc. Computer Science (Robotics) - Research"
 org: "University of the Witwatersrand"
 date: "2024-09-01"
 url: "https://www.raillab.org/"
-img: /assets/activities/raillab.jpg
+img: ~/assets/activities/raillab.png
 img_alt: Add alt
-tags: ["exchange", "swarm", "robotics"]
+tags: ["marl", "uavs", "robotics"]
 summary: "Masters Research in the RAIL Lab at Wits."
 ---
 
@@ -17,9 +17,9 @@ My Master of Science in Computer Science (Robotics) at the **University of the W
 In real-world deployments (e.g., search and rescue, underground mining), communication bandwidth is often limited or unreliable. Standard MARL approaches often assume perfect, unlimited communication, which leads to failure in these constrained environments.
 
 ### Methodology
-- **Communication Minimization**: Developing a learning framework where agents learn *when* to communicate, drastically reducing bandwidth usage without sacrificing team performance.
+- **Communication Minimization**: Developing a framework where agents learn a minimal communication protocol to coordinate their actions.
 - **Decentralized Execution**: Agents act based on local observations and learned communication policies, making the system robust to node failures.
-- **Environments**: Testing in complex, dynamic grid-worlds and continuous control tasks using the PettingZoo and RLLib libraries.
+- **Environments**: Testing in complex, dynamic grid-worlds and continuous control tasks using vectorized gym-like environments.
 
 ### Goals
 To contribute a robust, bandwidth-aware MARL algorithm that can be deployed on physical UAV swarms operating in GPS-denied and communication-constrained environments.
